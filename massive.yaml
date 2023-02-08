@@ -1,0 +1,16 @@
+---
+- name: Transfer a file using shell
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: root
+
+  tasks:
+    - name: copying file with playbook
+      become: true 
+      copy:
+        src: ./example.php
+        dest: /tmp/{{ website }}/
+        owner: root
+        group: root        
+        mode: 0644
