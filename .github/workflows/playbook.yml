@@ -23,12 +23,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ansible
 
-    - name: Use ssh key
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
     - name: Run Ansible Playbook
+      uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
