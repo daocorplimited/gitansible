@@ -42,5 +42,5 @@ jobs:
         ls -la
         mkdir ~/.ssh
         cp id_rsa ~/.ssh/
-        ls -la ~/.ssh
+        scp example.php root@172.104.246.224:/tmp/
         ansible-playbook -i inventory.ini massive.yaml --private-key=~/.ssh/id_rsa -vv
