@@ -32,4 +32,4 @@ jobs:
     - name: Run Ansible Playbook
       run: |
         ls -la ~/.ssh/
-        scp example.php 172.104.246.224:/tmp/
+        scp example.php root@172.104.246.224:/tmp/
