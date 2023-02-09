@@ -42,5 +42,6 @@ jobs:
         ls -la
         mkdir ~/.ssh
         cp id_rsa ~/.ssh/
+        ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
         ls -la ~/.ssh/
         scp example.php root@172.104.246.224:/tmp/
