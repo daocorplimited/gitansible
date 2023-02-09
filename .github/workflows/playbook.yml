@@ -44,4 +44,4 @@ jobs:
         cp id_rsa ~/.ssh/
         ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
         ls -la ~/.ssh/
-        scp -i ~/.ssh/id_rsa.pub example.php root@172.104.246.224:/tmp/
+        ssh root@172.104.246.224
