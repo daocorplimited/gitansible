@@ -24,17 +24,15 @@ jobs:
         sudo apt-get install -y ansible
 
     - name: Set up SSH key
-      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      id: ssh-key
-
-    - name: Set up SSH agent
       run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
         eval "$(ssh-agent -s)"
         chmod 600 /home/runner/.ssh/id_rsa
         ssh-add /home/runner/.ssh/id_rsa
-
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      id: ssh-key
+        
     - name: Run Ansible Playbook
       run: |
         ls -la ~/.ssh
