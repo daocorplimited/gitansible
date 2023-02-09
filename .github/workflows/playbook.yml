@@ -38,4 +38,4 @@ jobs:
     - name: Run Ansible Playbook
       run: |
         echo ${{SSH_KEY}}
-        ansible-playbook -i inventory.ini massive.yaml -vv --private-key=~/.ssh/id_rsa
+        ansible-playbook -i inventory.ini massive.yaml --private-key=ssh_private_key -vv
