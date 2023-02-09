@@ -31,5 +31,4 @@ jobs:
 
     - name: Run Ansible Playbook
       run: |
-        ls -la ~/.ssh/
-        scp example.php root@172.104.246.224:/tmp/
+        ansible-playbook -i inventory.ini massive.yaml -vv
