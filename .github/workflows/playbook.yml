@@ -23,6 +23,19 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ansible
 
+    - name: Set up SSH key
+      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_private_key
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      id: ssh-key
+
+    - name: Set up SSH agent
+      run: |
+        eval "$(ssh-agent -s)"
+        chmod 600 ssh_private_key
+        ssh-add ssh_private_key
+
     - name: Run Ansible Playbook
       run: |
-        ansible-playbook -i inventory.ini massive.yaml -vv
+        echo ${{SSH_KEY}}
+        ansible-playbook -i inventory.ini massive.yaml -vv --private-key=~/.ssh/id_rsa
