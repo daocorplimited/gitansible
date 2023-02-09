@@ -23,21 +23,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ansible
 
-    - name: Set up SSH key
-      run: |
-        mkdir .ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > .ssh/id_rsa
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      id: ssh-key
-
-    - name: Set up SSH agent
-      run: |
-        eval "$(ssh-agent -s)"
-        chmod 600 .ssh/id_rsa
-        ssh-add .ssh/id_rsa
+    - name: Use ssh key
+      uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Run Ansible Playbook
       run: |
         ls -la
-        ansible-playbook -i inventory.ini massive.yaml --private-key=.ssh/id_rsa -vv
+        ansible-playbook -i inventory.ini massive.yaml --private-key=id_rsa -vv
