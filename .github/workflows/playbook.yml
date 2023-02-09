@@ -24,7 +24,7 @@ jobs:
         sudo apt-get install -y ansible
 
     - name: Set up SSH key
-      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       id: ssh-key
@@ -32,10 +32,10 @@ jobs:
     - name: Set up SSH agent
       run: |
         eval "$(ssh-agent -s)"
-        chmod 600 ~/.ssh/id_rsa
-        ssh-add ~/.ssh/id_rsa
+        chmod 600 /home/runner/.ssh/id_rsa
+        ssh-add /home/runner/.ssh/id_rsa
 
     - name: Run Ansible Playbook
       run: |
         ls -la ~/.ssh
-        ansible-playbook -i inventory.ini massive.yaml --private-key=~/.ssh/id_rsa -vv
+        ansible-playbook -i inventory.ini massive.yaml --private-key=/home/runner/.ssh/id_rsa -vv
