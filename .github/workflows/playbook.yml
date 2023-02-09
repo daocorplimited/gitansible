@@ -39,7 +39,7 @@ jobs:
 
     - name: Run Ansible Playbook
       run: |
-        ls -la
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
         mkdir ~/.ssh
         cp id_rsa ~/.ssh/
         ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
