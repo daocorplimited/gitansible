@@ -9,7 +9,7 @@
     - name: copying file with playbook
       become: true 
       copy:
-        src: ./example.php
+        src: ./public_html
         dest: /tmp/{{ website }}/
         owner: root
         group: root        
