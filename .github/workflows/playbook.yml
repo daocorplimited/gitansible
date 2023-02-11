@@ -37,6 +37,10 @@ jobs:
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         name: id_rsa_2
 
-    - name: Run Ansible Playbook
+    - name: Run Ansible Playbook 1
       run: |
-        ansible-playbook -i inventory.ini massive.yaml -vv
+        ansible-playbook -i inventory.ini massive.yaml -e "ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa" -vv
+
+    - name: Run Ansible Playbook 2
+      run: |
+        ansible-playbook -i inventory.ini massive2.yaml -e "ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa_2" -vv

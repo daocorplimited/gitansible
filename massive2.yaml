@@ -1,6 +1,6 @@
 ---
 - name: Transfer a file using shell
-  hosts: first
+  hosts: second
   gather_facts: no
   vars:
     ansible_user: root
