@@ -28,7 +28,15 @@ jobs:
       with:
         key: ${{ secrets.SSH_PRIVATE_KEY }} 
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        name: id_rsa
+
+    - name: Install SSH Key 2
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }} 
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        name: id_rsa_2
 
     - name: Run Ansible Playbook
       run: |
-        ansible-playbook -i inventory.ini massiveftp.yaml -vv
+        ansible-playbook -i inventory.ini massive.yaml -vv
