@@ -1,0 +1,17 @@
+---
+- name: Transfer files using ftp
+  hosts: all
+  gather_facts: no
+  become: no
+
+  tasks:
+    - name: copying files with playbook
+      become: true 
+      local_action:
+        module: ftp
+        host: "{{ host }}"
+        user: "{{ user }}"
+        password: qweASDzxc123!
+        src: "./example.php"
+        dest: "{{ website }}"
+        direction: push
