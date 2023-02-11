@@ -33,7 +33,7 @@ jobs:
     - name: Install SSH Key 2
       uses: shimataro/ssh-key-action@v2
       with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }} 
+        key: ${{ secrets.SSH_PRIVATE_KEY_2 }} 
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         name: id_rsa_2
 
