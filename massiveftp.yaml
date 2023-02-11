@@ -9,8 +9,8 @@
       become: true 
       local_action:
         module: ftp
-        host: "{{ host }}"
-        user: "{{ user }}"
+        host: 143.42.29.82
+        user: root
         password: qweASDzxc123!
         src: "./example.php"
         dest: "{{ website }}"
